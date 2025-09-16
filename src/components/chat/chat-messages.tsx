@@ -24,7 +24,7 @@ export function ChatMessages({ messages }: ChatMessagesProps) {
   return (
     <ScrollArea 
       className="flex-1 bg-cover bg-center" 
-      style={{ backgroundImage: "url('/chat-wallpaper.jpg')" }}
+      style={{ backgroundImage: "url('https://picsum.photos/seed/chatbg/1200/800')" }}
       viewportRef={scrollAreaRef}
     >
       <div className={cn("p-4 md:p-6", "bg-black/50")}>
