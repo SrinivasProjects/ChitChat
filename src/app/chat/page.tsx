@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import { ChatList } from '@/components/chat/chat-list';
 import { ChatView } from '@/components/chat/chat-view';
-import { dummyData, currentUser, Chat } from '@/lib/dummy-data';
+import { dummyData, currentUser, Chat, Message } from '@/lib/dummy-data';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -28,12 +28,12 @@ export default function ChatPage() {
     return chats.find(chat => chat.id === selectedChatId);
   }, [chats, selectedChatId]);
 
-  const handleSendMessage = (messageContent: string) => {
+  const handleSendMessage = (message: Omit<Message, 'id' | 'timestamp' | 'user' | 'isRead'>) => {
     if (!selectedChat) return;
 
-    const newMessage = {
+    const newMessage: Message = {
       id: `msg-${Date.now()}`,
-      content: messageContent,
+      ...message,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       user: currentUser,
       isRead: true,

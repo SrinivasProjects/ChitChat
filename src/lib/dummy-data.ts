@@ -11,6 +11,7 @@ export type Message = {
   timestamp: string;
   user: User;
   isRead: boolean;
+  imageUrl?: string;
 };
 
 export type Chat = {
@@ -40,7 +41,7 @@ export const dummyData: Chat[] = [
     id: "chat-1",
     users: [currentUser, users[0]],
     messages: [
-      { id: "msg-1-1", content: "Hey! How's it going?", timestamp: "10:00 AM", user: users[0], isRead: true },
+      { id: "msg-1-1", content: "A futuristic cityscape with flying cars", timestamp: "10:00 AM", user: users[0], isRead: true },
       { id: "msg-1-2", content: "Pretty good, just working on a new project. You?", timestamp: "10:01 AM", user: currentUser, isRead: true },
       { id: "msg-1-3", content: "Same here. This Next.js app is something else!", timestamp: "10:02 AM", user: users[0], isRead: true },
       { id: "msg-1-4", content: "Tell me about it. The App Router is a game-changer.", timestamp: "10:02 AM", user: currentUser, isRead: true },
@@ -74,7 +75,7 @@ export const dummyData: Chat[] = [
     id: "chat-5",
     users: [currentUser, users[4]],
     messages: [
-      { id: "msg-5-1", content: "The AI reply suggestions are surprisingly good.", timestamp: "3 days ago", user: users[4], isRead: true },
+      { id: "msg-5-1", content: "A majestic lion in the savanna at sunset", timestamp: "3 days ago", user: users[4], isRead: true },
     ],
   },
   {

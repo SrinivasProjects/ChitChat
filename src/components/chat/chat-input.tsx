@@ -1,6 +1,6 @@
 "use client";
 
-import { Send, Smile } from "lucide-react";
+import { Send, Smile, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -10,9 +10,11 @@ interface ChatInputProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onSend: () => void;
+  onGenerateImage: () => void;
+  isGenerating: boolean;
 }
 
-export function ChatInput({ value, onChange, onSend }: ChatInputProps) {
+export function ChatInput({ value, onChange, onSend, onGenerateImage, isGenerating }: ChatInputProps) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
@@ -24,13 +26,16 @@ export function ChatInput({ value, onChange, onSend }: ChatInputProps) {
     <div className="relative">
       <Textarea
         placeholder="Type a message..."
-        className="min-h-[48px] resize-none rounded-2xl border-border/40 bg-background py-3 pl-4 pr-24 shadow-sm"
+        className="min-h-[48px] resize-none rounded-2xl border-border/40 bg-background py-3 pl-4 pr-32 shadow-sm"
         rows={1}
         value={value}
         onChange={onChange}
         onKeyDown={handleKeyDown}
       />
       <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+        <Button variant="ghost" size="icon" aria-label="Generate Image" onClick={onGenerateImage} disabled={isGenerating}>
+          <ImageIcon className="h-5 w-5" />
+        </Button>
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="ghost" size="icon" aria-label="Emoji">

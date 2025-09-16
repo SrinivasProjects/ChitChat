@@ -6,6 +6,7 @@ import { Message, currentUser } from '@/lib/dummy-data';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getPlaceholderImage } from '@/lib/placeholder-images';
 import { Check, CheckCheck } from 'lucide-react';
+import Image from 'next/image';
 
 interface MessageBubbleProps {
   message: Message;
@@ -47,10 +48,24 @@ export function MessageBubble({ message }: MessageBubbleProps) {
           {
             "bg-primary text-primary-foreground rounded-br-none": isCurrentUser,
             "bg-accent text-accent-foreground rounded-bl-none": !isCurrentUser,
+            "p-2": message.imageUrl,
           }
         )}
       >
-        <p className="text-sm">{message.content}</p>
+        {message.imageUrl ? (
+          <div className="flex flex-col gap-2">
+            <Image
+              src={message.imageUrl}
+              alt={message.content}
+              width={300}
+              height={300}
+              className="rounded-lg"
+            />
+             <p className="text-sm italic text-muted-foreground/80">{message.content}</p>
+          </div>
+        ) : (
+          <p className="text-sm">{message.content}</p>
+        )}
 
         {isCurrentUser && (
           <div className="absolute -bottom-5 right-1 flex items-center gap-1">
