@@ -79,6 +79,9 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply text-[15px];
+  }
   body {
     @apply bg-background text-foreground;
   }

@@ -23,7 +23,7 @@ export function ChatMessages({ messages }: ChatMessagesProps) {
   return (
     <ScrollArea className="flex-1" viewportRef={scrollAreaRef}>
       <div className="p-4 md:p-6">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-8">
           <AnimatePresence>
             {messages.map((message) => (
               <MessageBubble key={message.id} message={message} />
